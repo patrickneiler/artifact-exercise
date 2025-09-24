@@ -1,10 +1,6 @@
 {
   "name": "Next.js AI Chatbot",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
-  "features": {
-    "ghcr.io/devcontainers/features/pnpm:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  },
   "forwardPorts": [3000],
   "portsAttributes": {
     "3000": {
@@ -12,7 +8,7 @@
       "onAutoForward": "notify"
     }
   },
-  "postCreateCommand": "pnpm install",
+  "postCreateCommand": "corepack enable pnpm && pnpm install",
   "customizations": {
     "codespaces": {
       "openFiles": [
