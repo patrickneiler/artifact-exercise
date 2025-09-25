@@ -6,12 +6,6 @@ Welcome! This repository is set up for your technical interview and practical co
 
 ## 🚀 Joining the Live Share Session
 
-### 1. **Prerequisites**
-- **Editor:** Install [Visual Studio Code](https://code.visualstudio.com/) (VS Code) on your computer.
-- **Extension:** Install the [Live Share extension](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare) for VS Code.
-- **GitHub Account:** Make sure you can sign in to VS Code with your GitHub or Microsoft account.
-
-### 2. **Joining the Session**
 - At the scheduled time, your interviewer will send you a **Live Share invite link**.
 - Click the link to open it in VS Code.
 - Accept any prompts to install or enable the Live Share extension.
@@ -24,20 +18,24 @@ Welcome! This repository is set up for your technical interview and practical co
 Your session will follow this structure:
 
 ### 1. **Introduction (5 min)**
+
 - Briefly discuss your technical background and set expectations.
 
 ### 2. **Deep Dive Discussion (15–20 min)**
+
 - Topics may include:
   - Component-based architecture & state management
   - Agentic reasoning and autonomous systems
   - Real-time UI and streaming data handling
 
 ### 3. **Practical Coding Task (20–30 min)**
+
 - **Implement a feature or extend an artifact** (see below for ideas).
 - Demonstrate technical understanding, error handling, and user feedback.
 - Integrate agentic reasoning or real-time UI updates as appropriate.
 
 ### 4. **Code Review & Discussion (5–10 min)**
+
 - Walk through your implementation.
 - Discuss alternative approaches and scalability.
 
@@ -46,13 +44,14 @@ Your session will follow this structure:
 ## 💡 Artifact & Feature Ideas
 
 You may be asked to implement or extend one of the following concepts:
+
 - **Visual Recipe Generator**: Text-to-recipe with real-time streaming updates.
 - **Code Refactoring Assistant**: Real-time code analysis and suggestions.
 - **Vacation Planner**: Dynamic itinerary generator with interactive maps.
 - **Music Composition Studio**: AI-assisted music creation with live previews.
 - **3D Character Designer**: Text-to-3D model generator with customization.
 
-*See the interview scenario for more details on each artifact type.*
+_See the interview scenario for more details on each artifact type._
 
 ---
 
