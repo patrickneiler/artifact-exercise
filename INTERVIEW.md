@@ -71,32 +71,12 @@ The repository includes a scaffold for the Todo artifact. Implementations should
 
 - `components/artifact.tsx` — the artifact registry already registers `todoArtifact`. No changes needed here to make the artifact visible.
 
-Suggested small contract (2–3 bullets):
-
-- Input: create artifact request with a title and optional initial items.
-- Mutations: addItem(item), updateItem(id, patch), toggleItem(id), deleteItem(id), reorderItems(order[]).
-- Persistence: artifact content is a JSON-serialized array of items stored in `artifact.content`.
-
 Recommended checklist for the candidate
 
 - [ ] Parse and render items stored in `artifact.content`.
 - [ ] Implement add, inline edit, toggle-complete, delete, and simple reorder controls.
 - [ ] Persist changes using `onSaveContent` so changes survive reload.
 - [ ] (Optional) Support streaming deltas from the server and merge changes by item id.
-- [ ] Add 1–2 small unit tests for the transformation/reducer logic.
-
-Acceptance criteria / evaluation rubric
-
-- The artifact opens from the UI and renders the todo list.
-- Core flows (add/edit/toggle/delete/reorder) work and persist after reload.
-- Changes are typed, easy to follow, and integrate with `hooks/use-artifact.ts` patterns.
-- (Optional bonus) Clear, simple streaming reconciliation strategy and working optimistic updates.
-
-How to run & test locally
-
-- Install deps (if needed): `pnpm install`
-- Start dev server: `pnpm dev`
-- Open the app, open/create an artifact and select the Todo artifact, then exercise add/edit/toggle/delete and reload to confirm persistence.
 
 Interview hints
 
