@@ -15,29 +15,24 @@ Welcome! This repository is set up for your technical interview and practical co
 
 ## 🛠 What You'll Be Doing
 
-Your session will follow this structure:
+You will be asked to implement a feature or extend an artifact (see below for ideas). The goal is to demonstrate your technical understanding, approach to error handling, and ability to provide user feedback. You are encouraged to integrate agentic reasoning or real-time UI updates as appropriate.
 
-### 1. **Introduction (5 min)**
+After you complete your implementation, you'll walk through your code and discuss your approach, including alternative solutions and scalability considerations.
 
-- Briefly discuss your technical background and set expectations.
+---
 
-### 2. **Deep Dive Discussion (15–20 min)**
+## 🏗️ Core Implementation
 
-- Topics may include:
-  - Component-based architecture & state management
-  - Agentic reasoning and autonomous systems
-  - Real-time UI and streaming data handling
+Core implementation of artifacts typically involves:
 
-### 3. **Practical Coding Task (20–30 min)**
+- Creating a new artifact type in the [`artifacts/`](./artifacts/) directory (e.g., [`artifacts/recipe/client.tsx`](./artifacts/recipe/client.tsx)).
+- Defining artifact UI and streaming logic in a React component.
+- Registering the artifact type in the artifact system (see [`components/create-artifact.tsx`](./components/create-artifact.tsx)).
+- Managing artifact state and updates using hooks (see [`hooks/use-artifact.ts`](./hooks/use-artifact.ts)).
+- Integrating artifact actions and real-time updates for a responsive user experience.
+- Optionally, adding server-side logic for artifact creation or processing in [`lib/artifacts/server.ts`](./lib/artifacts/server.ts).
 
-- **Implement a feature or extend an artifact** (see below for ideas).
-- Demonstrate technical understanding, error handling, and user feedback.
-- Integrate agentic reasoning or real-time UI updates as appropriate.
-
-### 4. **Code Review & Discussion (5–10 min)**
-
-- Walk through your implementation.
-- Discuss alternative approaches and scalability.
+_See the interview scenario for more details on each artifact type and refer to the project files for examples of artifact implementation._
 
 ---
 
@@ -50,8 +45,6 @@ You may be asked to implement or extend one of the following concepts:
 - **Vacation Planner**: Dynamic itinerary generator with interactive maps.
 - **Music Composition Studio**: AI-assisted music creation with live previews.
 - **3D Character Designer**: Text-to-3D model generator with customization.
-
-_See the interview scenario for more details on each artifact type._
 
 ---
 
