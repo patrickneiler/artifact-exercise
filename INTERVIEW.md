@@ -34,75 +34,75 @@ Core implementation of artifacts typically involves:
 
 _See the interview scenario for more details on each artifact type and refer to the project files for examples of artifact implementation._
 
-
 ---
 
-## 📝 Interview Task: Todo List Artifact
+## 📝 Interview Task: Todo List Artifact (scaffolded)
 
+Goal (minimal):
 
-What to implement (minimal):
+- Implement a small Todo List artifact using the provided scaffold so candidates can demonstrate state management, persistence, and optional streaming handling.
 
-- Add a new artifact kind `todo` under `artifacts/todo/client.tsx` that provides a small React UI for a todo list.
-- Allow creating, adding, editing, toggling complete, and deleting items.
-- Persist the artifact's items in the artifact `content` field (JSON) so they survive page reloads.
-- Register the artifact in the artifact registry so it appears in the app.
+Primary requirements (must-have):
+
+- Add/create todo items, edit text inline, toggle complete/incomplete, and delete items.
+- Persist the artifact's items in the artifact `content` field as JSON so they survive reloads (use the provided `onSaveContent` callback).
+- Keep the UI minimal and keyboard-friendly; accessibility is a plus.
 
 Stretch goals (optional):
 
-- Implement optimistic updates and a simple reconciliation for incoming remote updates.
-- Add drag-and-drop reordering or up/down controls.
-- Add server-side helper in `artifacts/todo/server.ts` to create an initial todo artifact shape.
+- Optimistic local updates with server acknowledgement and simple reconciliation for remote updates.
+- Reordering (drag-and-drop or simple up/down controls).
+- Implement server-side generation/initialization using `artifacts/todo/server.ts` (uses `streamObject` as a scaffold).
 
-How we'll evaluate it:
+Scaffold overview — where to implement
 
-- The artifact can be opened from the UI (registered) and displays a working todo list.
-- Basic operations (add/edit/toggle/delete) work and persist across reloads.
-- The code is clear, typed, and integrates with `hooks/use-artifact.ts`.
+The repository includes a scaffold for the Todo artifact. Implementations should live inside these files:
 
-Notes for the interviewer/candidate:
+- `artifacts/todo/client.tsx` — exports `todoArtifact` (an `Artifact` instance). Implement the `TodoContent` UI here:
 
-- Keep the UI minimal — focus on correctness and clear state handling.
-- Use existing hooks and patterns in the repo (see `hooks/use-artifact.ts`).
-- Commit early and often; show how you'd handle streaming or conflicts if time permits.
+  - Parse `content` (JSON) into a typed array of items.
+  - Implement add, edit (inline), toggle, delete, and simple reorder.
+  - Persist with `onSaveContent(JSON.stringify(items), false)`.
+  - Use `status === 'streaming'` to indicate streaming updates when applicable.
 
-## Scaffold status & where to implement
+- `artifacts/todo/server.ts` — scaffolded `todoDocumentHandler` using `streamObject`. Candidate can implement a schema and map generated results to the artifact content format. The scaffold currently streams partial deltas as `data-textDelta` and returns serialized items; update if you add a custom data type.
 
-To speed up the interview, this repository now contains a minimal scaffold for the Todo artifact. The candidate should implement feature logic inside the scaffold files listed below. The scaffolds include comments and TODOs describing the expected work.
+- `components/todo-item.tsx` — lightweight per-item UI (inline edit/toggle/delete); extend or replace as you implement inline editing.
 
-Key scaffold files:
+- `components/artifact.tsx` — the artifact registry already registers `todoArtifact`. No changes needed here to make the artifact visible.
 
-- `artifacts/todo/client.tsx` — Exports `todoArtifact` (an `Artifact` instance). The `content` component (`TodoContent`) is a scaffold; implement the UI here. Tasks: parse `artifact.content` JSON into items, provide add/edit/toggle/delete/reorder UI, call `onSaveContent(JSON.stringify(items), false)` to persist, and handle optimistic updates.
-- `artifacts/todo/server.ts` — `todoDocumentHandler` scaffold using `streamObject`. Candidate should implement schema validation and mapping from the generated object to the artifact content. The handler currently streams partial deltas as `data-textDelta` and returns serialized items; update as needed.
-- `components/todo-item.tsx` — Small per-item component scaffold (inline edit, toggle, delete). Candidate may extend or replace.
-- `components/artifact.tsx` — The artifact registry already imports and registers the `todoArtifact`. No change required here; candidate can focus on the artifact content and server handler.
-- `tests/artifacts/todo.test.ts` — Minimal test scaffold (optional to extend).
+Suggested small contract (2–3 bullets):
 
-Recommended task checklist (for the candidate)
+- Input: create artifact request with a title and optional initial items.
+- Mutations: addItem(item), updateItem(id, patch), toggleItem(id), deleteItem(id), reorderItems(order[]).
+- Persistence: artifact content is a JSON-serialized array of items stored in `artifact.content`.
 
-- [ ] Implement parsing/serialization of items via `artifact.content` (JSON).
-- [ ] Implement add, inline edit, toggle-complete, delete, and simple reorder (up/down) controls.
-- [ ] Persist changes with `onSaveContent` so changes survive reloads.
-- [ ] Handle streaming deltas from the server: merge partial updates and surface a non-blocking "streaming" state in the UI.
-- [ ] Add minimal unit tests for core list transformation / reducer logic (happy path + 1 edge case).
+Recommended checklist for the candidate
 
-Evaluation & acceptance criteria
+- [ ] Parse and render items stored in `artifact.content`.
+- [ ] Implement add, inline edit, toggle-complete, delete, and simple reorder controls.
+- [ ] Persist changes using `onSaveContent` so changes survive reload.
+- [ ] (Optional) Support streaming deltas from the server and merge changes by item id.
+- [ ] Add 1–2 small unit tests for the transformation/reducer logic.
 
-- The artifact is visible from the app (registered) and opens correctly.
-- Basic operations (add/edit/toggle/delete/reorder) work and persist across reloads.
-- Streaming-generated updates from the server merge into the UI without data loss.
-- Code is typed, readable, and uses `hooks/use-artifact.ts` patterns.
+Acceptance criteria / evaluation rubric
+
+- The artifact opens from the UI and renders the todo list.
+- Core flows (add/edit/toggle/delete/reorder) work and persist after reload.
+- Changes are typed, easy to follow, and integrate with `hooks/use-artifact.ts` patterns.
+- (Optional bonus) Clear, simple streaming reconciliation strategy and working optimistic updates.
 
 How to run & test locally
 
-- Install (if needed): `pnpm install`
-- Start the dev server: `pnpm dev`
-- In the running app: open the artifact panel, create/open a Todo artifact (it is registered). Perform add/edit/toggle/delete and reload to verify persistence.
+- Install deps (if needed): `pnpm install`
+- Start dev server: `pnpm dev`
+- Open the app, open/create an artifact and select the Todo artifact, then exercise add/edit/toggle/delete and reload to confirm persistence.
 
-Interview tips
+Interview hints
 
-- Keep the UI minimal and focus on robust state handling and error feedback.
-- If you implement streaming behavior, explain your reconciliation strategy (timestamps, last-writer-wins, merge-by-id, etc.).
-- Commit small, working chunks and explain trade-offs.
+- Keep the UI minimal; show your reasoning about state shape and reconciliation.
+- A reducer for list operations is recommended (add, update, toggle, delete, reorder).
+- If you implement streaming, describe how you merge remote updates and how you would handle conflicts.
 
 ---
 
