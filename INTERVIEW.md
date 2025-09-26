@@ -21,21 +21,6 @@ After you complete your implementation, you'll walk through your code and discus
 
 ---
 
-## 🏗️ Core Implementation
-
-Core implementation of artifacts typically involves:
-
-- Creating a new artifact type in the [`artifacts/`](./artifacts/) directory (e.g., [`artifacts/recipe/client.tsx`](./artifacts/recipe/client.tsx)).
-- Defining artifact UI and streaming logic in a React component.
-- Registering the artifact type in the artifact system (see [`components/create-artifact.tsx`](./components/create-artifact.tsx)).
-- Managing artifact state and updates using hooks (see [`hooks/use-artifact.ts`](./hooks/use-artifact.ts)).
-- Integrating artifact actions and real-time updates for a responsive user experience.
-- Optionally, adding server-side logic for artifact creation or processing in [`lib/artifacts/server.ts`](./lib/artifacts/server.ts).
-
-_See the interview scenario for more details on each artifact type and refer to the project files for examples of artifact implementation._
-
----
-
 ## 📝 Interview Task: Todo List Artifact (scaffolded)
 
 Goal (minimal):
@@ -78,23 +63,6 @@ Recommended checklist for the candidate
 - [ ] Persist changes using `onSaveContent` so changes survive reload.
 - [ ] (Optional) Support streaming deltas from the server and merge changes by item id.
 
-Interview hints
-
-- Keep the UI minimal; show your reasoning about state shape and reconciliation.
-- A reducer for list operations is recommended (add, update, toggle, delete, reorder).
-- If you implement streaming, describe how you merge remote updates and how you would handle conflicts.
-
----
-
-## 🧩 Tips for Success
-
-- **No Local Setup Needed:** All dependencies and environment variables are managed by the host. You can focus solely on the code.
-- **Live Collaboration:** Ask questions, pair program, and discuss your thought process in real time.
-- **Streaming UI:** The app supports real-time updates—showcase your approach to handling streaming data and UI responsiveness.
-- **Commit Often:** Use Git in the shared environment to save your work as you go.
-- **Ask for Clarification:** Don’t hesitate to clarify requirements or constraints at any time.
-
----
 
 ## 🛡 Security & Privacy
 
